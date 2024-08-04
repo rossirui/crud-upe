@@ -11,27 +11,29 @@ export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
   @Get()
-  async listarUsuarios() {
-    const usuarios = await this.usuariosService.findAll();
-    console.log('Usuários:');                                   //
-    usuarios.forEach(usuario => {                               // COlocado apenas para testar
-      console.log(`ID: ${usuario.id}, Nome: ${usuario.nome}`);  //
-    });
+  listarUsuarios() {
+    const usuarios =  this.usuariosService.findAll();
     return usuarios;
   }
 
+  @Get(':id')
+  buscarUsuarioPorId(@Param('id') id: number) {
+    const usuario = this.usuariosService.findOneById(id);
+    return usuario;
+  }
+
   @Post()
-  async create(@Body() createUsuarioDto: CreateUsuarioDto) {
+  criarUsuario(@Body() createUsuarioDto: CreateUsuarioDto) {
     return this.usuariosService.create(createUsuarioDto);
   }
 
   @Put(':id') /* atualização pelo id */
-  async update(@Param('id') id: number, @Body() updateUsuarioDto: UpdateUsuarioDto) {
+  atualizarUsuario(@Param('id') id: number, @Body() updateUsuarioDto: UpdateUsuarioDto) {
     return this.usuariosService.update(id, updateUsuarioDto);
   }
 
-  @Delete(':id') // deleção pelo id5
-  async remove(@Param('id') id: number) {
+  @Delete(':id') // deleção pelo id
+  async removerUsuario(@Param('id') id: number) {
     return this.usuariosService.remove(id);
   }
 

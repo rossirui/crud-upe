@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 
 import { Usuario } from './usuario.entity';
 
+
 @Injectable()
 export class UsuariosService {
   constructor(
@@ -13,7 +14,12 @@ export class UsuariosService {
   ) {}
 
   async findAll(): Promise<Usuario[]> {
-    return this.usuarioRepository.find();
+    return await this.usuarioRepository.find();
+  }
+
+  async findOneById(id: number): Promise<Usuario> {
+    const user = await this.usuarioRepository.findOne({ where: { id } });
+    return user;
   }
 
   async create(usuario: Usuario): Promise<Usuario> {
