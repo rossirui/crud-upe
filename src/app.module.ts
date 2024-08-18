@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { Usuario } from './usuarios/usuario.entity'; // entidade usuario
 import { UsuariosController } from './usuarios/usuarios.controller';
 import { UsuariosService } from './usuarios/usuarios.service';
+import { Filho } from './filho/filho.entity';
 
 
 @Module({
@@ -17,10 +18,10 @@ import { UsuariosService } from './usuarios/usuarios.service';
       username: 'postgres',
       password: 'root',
       database: 'crud-upe',
-      entities: [Usuario], // 
+      entities: [Usuario, Filho], // 
       synchronize: true, // criando as tabelas automaticamente (não usar em produção)
     }),
-    TypeOrmModule.forFeature([Usuario]),
+    TypeOrmModule.forFeature([Usuario, Filho],),
   ],
   controllers: [AppController, UsuariosController],
   providers: [AppService, UsuariosService],

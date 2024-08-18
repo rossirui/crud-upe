@@ -1,0 +1,17 @@
+CRUD-UPE, entrega 2
+
+Nessa entrega foi criada uma nova entidade chamada 'filho' a qual possui um relacionamento de Many To One com a 'usuario'.
+Ou seja, um 'usuario' pode ter 0 ou mais filhos e cada filho só pode ter um usuario associado.
+
+Módulos criados:
+filho.entity.ts, o qual contém as propeiedades de 'nome', 'idade' e uma chave estrangeira que informa o id do usuario associado.
+create-filho-dto.ts, informando as características de cada propriedade usada na operação de criação do filho.
+update-filho-dto, que informa as características usadas na operação de atualização do filho.
+
+Módulos alterados:
+app.module.ts, inserindo a entidade filho.
+usuario.entity.ts, crianção do relacionamento com a entidade filho.
+create.usuario.dto.ts, inclusão do relacionamento com a entidade filho.
+update-usuario.dto.ts, inclusão do relacionamento com a entidade filho.
+usuarios.controller.ts, inclusão dos métodos para adicionar filhos (via rota ':id/filhos') e atualizar filho (via rota :usuarioId/filhos/:filhoId).
+usuarios.service.ts, injeção do repositório filhos e os métodos para adicionar filho e de atualizar filho. Foram colocados tratamentos para excessões.
